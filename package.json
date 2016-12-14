@@ -1,0 +1,49 @@
+{
+  "dependencies": {
+    "@angular/common": "^2.0.1",
+    "@angular/compiler": "^2.0.1",
+    "@angular/core": "^2.0.1",
+    "@angular/http": "^2.0.1",
+    "@angular/platform-browser": "^2.0.1",
+    "@angular/platform-browser-dynamic": "^2.0.1",
+    "@angular/router": "^3.0.1",
+    "bootstrap-sass": "^3.3.7",
+    "core-js": "^2.4.1",
+    "es7-reflect-metadata": "^1.6.0",
+    "lodash": "^4.16.2",
+    "ng2-bootstrap": "^1.1.5",
+    "rxjs": "^5.0.0-beta.12",
+    "zone.js": "^0.6.25"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/lodash": "^4.14.36",
+    "@types/node": "^6.0.41",
+    "angular2-template-loader": "^0.5.0",
+    "awesome-typescript-loader": "^2.2.4",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.4.2",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "sass-loader": "^4.0.2",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^2.0.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.1.0-beta.25"
+  },
+  "scripts": {
+    "clean-compiled": "rimraf public/*",
+    "build": "npm run build:css && npm run build:js",
+    "build:js": "npm run clean-compiled && webpack",
+    "build:css:app": "node-sass src/stylesheets/app.scss public/app.css",
+    "build:css:vendor": "node-sass src/stylesheetsvendor.scss public/vendor.css",
+    "build:css": "npm run build:css:app && npm run build:css:vendor",
+    "watch": "npm run clean-compiled && webpack --watch"
+  }
+}
