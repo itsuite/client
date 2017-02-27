@@ -1,22 +1,7 @@
+<% var _ = require('lodash') %>
+
 <!DOCTYPE html>
-<!--[if lt IE 7 ]>
-<html lang="en"
-      class="ie6" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
-<!--[if IE 7 ]>
-<html lang="en"
-      class="ie7" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
-<!--[if IE 8 ]>
-<html lang="en"
-      class="ie8" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
-<!--[if IE 9 ]>
-<html lang="en"
-      class="ie9" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en" class=""
-        <% if(htmlWebpackPlugin.files.manifest) { %>
-      manifest="<%= htmlWebpackPlugin.files.manifest %>"
-        <% } %>
-> <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -39,7 +24,7 @@
     <base href="<%= htmlWebpackPlugin.options.baseHref %>">
 </head>
 
-<body>
+<body aurelia-app="main">
 <noscript>
     Sorry, your browser is not supported. Please upgrade to
     the latest version or switch your browser to use this site.
@@ -47,21 +32,16 @@
     for options.
 </noscript>
 
-<its-app>Loading ...</its-app>
-
-
-
 
 <% _.each(htmlWebpackPlugin.options.assets.scripts, function(value) { %>
-    <script src="<%= value %>"></script>
+<script src="<%= value %>"></script>
 <% }) %>
 
 <% if (htmlWebpackPlugin.options.devServer) { %>
-    <script src="<%= htmlWebpackPlugin.options.devServer %>/webpack-dev-server.js"></script>
+<script src="<%= htmlWebpackPlugin.options.devServer %>/webpack-dev-server.js"></script>
 <% } %>
 
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>
 </body>
-</html>

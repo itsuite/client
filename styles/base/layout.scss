@@ -1,0 +1,50 @@
+body {
+  overflow-x: hidden;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+#wrapper {
+  position: relative;
+  height: 100%;
+  transition: all 0.5s ease;
+  padding-left: 0;
+
+  &.toggled {
+    padding-left: 220px;
+
+    #sidebar-wrapper {
+      width: 220px;
+    }
+
+    #content-wrapper {
+      margin-right: -220px;
+      position: absolute;
+    }
+  }
+}
+
+#sidebar-wrapper {
+  transition: all 0.5s ease;
+  background: #1a1a1a;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 220px;
+  margin-left: -220px;
+  z-index: 1000;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#content-wrapper {
+  width: 100%;
+}

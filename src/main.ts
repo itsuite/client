@@ -1,5 +1,10 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app.module';
+import {Aurelia} from 'aurelia-framework';
 
-const platform = platformBrowserDynamic();
-platform.bootstrapModule(AppModule);
+export async function configure(aurelia: Aurelia) {
+    aurelia.use
+        .standardConfiguration()
+        .developmentLogging();
+
+    await aurelia.start();
+    aurelia.setRoot('app');
+}

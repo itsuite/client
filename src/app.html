@@ -1,0 +1,17 @@
+<template>
+    <require from="shared/components/navbar/navbar"></require>
+    <require from="shared/components/sidebar/sidebar"></require>
+
+    <its-shared-navbar></its-shared-navbar>
+
+    <div id="wrapper" class.bind="sidebarOpen ? 'toggled' : ''">
+        <div id="content-wrapper">
+            <button type="button" click.delegate="toggleSidebar()">${sidebarOpen ? 'Close' : 'Open'}</button>
+            <router-view></router-view>
+        </div>
+
+        <div id="sidebar-wrapper">
+            <its-shared-sidebar></its-shared-sidebar>
+        </div>
+    </div>
+</template>

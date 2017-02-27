@@ -3,28 +3,46 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const lodash = require('lodash');
+const AureliaPlugin = require('aurelia-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+const lodash = require('lodash');
+const project = require('./package.json');
 const cdnConfig = require('./config/cdn.json');
+const envConfig = require('./build-tools/env-config');
+
+const title = 'IT Suite';
+const baseUrl = '/';
+const rootDir = path.resolve();
+const srcDir = path.resolve('src');
+const outDir = path.resolve('public');
+
+const aureliaBootstrap = [
+    'aurelia-bootstrapper-webpack',
+    'aurelia-polyfills',
+    'aurelia-pal-browser',
+    'regenerator-runtime',
+];
+
+const aureliaModules = Object.keys(project.dependencies).filter(dep => dep.startsWith('aurelia-'));
 
 let config = {
     entry: {
-        'app': './src/main.ts',
-        'vendors': './src/vendor.ts',
-        'polyfills': './src/polyfills.ts'
+        'app': ['./src/main', './styles/app.scss'], // filled by aurelia-webpack-plugin
+        'aurelia-bootstrap': aureliaBootstrap,
+        'aurelia-modules': aureliaModules
     },
 
     output: {
-        path: root('public'),
+        path: outDir,
         filename: '[name]-[chunkhash].js',
-        sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js',
+        sourceMapFilename: '[name]-[chunkhash].map',
         publicPath: process.env.APP_BASE_HREF
     },
 
     resolve: {
         alias: {
-            'src': root('src')
+            'src': srcDir
         },
         extensions: [
             '.ts', '.js', '.json', '.css', '.scss', '.html',
@@ -32,7 +50,7 @@ let config = {
         ]
     },
 
-    externals: lodash.reduce(cdnConfig, function(hash, value) {
+    externals: lodash.reduce(cdnConfig.scripts, function(hash, value) {
         hash[value.name] = value.global;
         return hash;
     }, {}),
@@ -42,60 +60,86 @@ let config = {
     },
 
     module: {
-        loaders: [
-            {
-                test: /\.json$/,
-                loader: 'json-loader'
-            },
+        rules: [
             {
                 test: /\.html$/,
-                loader: 'raw-loader'
+                use: 'raw-loader'
             },
             {
                 test: /\.ts/,
-                loader: ['awesome-typescript-loader'],
+                use: 'awesome-typescript-loader',
                 exclude: [/\.(spec|e2e)\.ts$/]
             },
             {
                 test: /\.scss/,
-                loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: 'css!sass'
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => {
+                                    return [
+                                        require('autoprefixer')
+                                    ]
+                                }
+                            }
+                        },
+                        'sass-loader'
+                    ]
                 })
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf|svg|gif)$/,
-                loader: 'url-loader?limit=1024'
+                use: 'url-loader?limit=1024'
+            },
+            {
+                test: /\.ejs/,
+                use: 'ejs-loader'
             }
         ]
     },
-
     plugins: [
+        new webpack.ProvidePlugin({
+            regeneratorRuntime: 'regenerator-runtime',
+            Promise: 'bluebird'
+        }),
         new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendors', 'polyfills'],
+            names: ['aurelia-modules', 'aurelia-bootstrap'],
             minChunks: Infinity
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.ejs',
             inject: false,
             assets: {
-                scripts: lodash.map(cdnConfig, 'url'),
-                sheets: [
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css'
-                ]
+                scripts: lodash.map(cdnConfig.scripts, 'url'),
+                sheets: lodash.map(cdnConfig.sheets, 'url')
             },
 
-            title: 'IT Suite',
-            baseHref:  '/client/public/'
+            title: 'IT Suite'
         }),
 
-        new ExtractTextPlugin('[name]-[contenthash].css')
-    ]
+        new AureliaPlugin({
+            root: rootDir,
+            src: srcDir,
+            title: title,
+            baseUrl: baseUrl
+        }),
+
+        new ExtractTextPlugin({
+            filename: '[name]-[contenthash].css'
+        })
+    ],
+    devtool: envConfig.devtool || 'eval-source-map'
 };
 
-function root(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return path.join.apply(path, [__dirname].concat(args));
+if (envConfig.minify) {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: false }
+    }));
+
+    config.plugins.push(new OptimizeCssAssetsPlugin());
 }
 
 module.exports = config;

@@ -1,0 +1,5 @@
+{
+  "debug": "boolean true or false",
+  "minify": "should the output be minified?",
+  "devtool": "webpack selected devtool for generating maps"
+}

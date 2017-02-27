@@ -1,0 +1,27 @@
+.sidebar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 220px;
+
+  li {
+    display: inline-block;
+    line-height: 20px;
+    position: relative;
+    width: 100%;
+
+    &:before {
+      background-color: #1c1c1c;
+      content: '';
+      height: 100%;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition: width .2s ease-in;
+      width: 3px;
+      z-index: -1;
+    }
+  }
+}

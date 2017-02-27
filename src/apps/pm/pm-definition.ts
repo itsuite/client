@@ -1,7 +1,9 @@
-import { AppDefinition } from "src/shared/app-definition";
+import {AppDefinition} from 'src/apps/app-definition';
 
 export const PmDefinition: AppDefinition = {
     name: 'Project Management',
-    thumbnail: '',
-    perex: ''
+    perex: 'Manage your projects',
+    route: {
+        name: 'pm'
+    }
 };

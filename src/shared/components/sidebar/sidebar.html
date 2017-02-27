@@ -1,0 +1,7 @@
+<template>
+    <ul class="sidebar">
+        <li repeat.for="link of links">
+            <a href="#" innerhtml.bind="link.name" click.delegate="triggerAlert(link)"></a>
+        </li>
+    </ul>
+</template>

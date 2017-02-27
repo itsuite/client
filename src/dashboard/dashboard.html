@@ -1,0 +1,16 @@
+<template>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" repeat.for="app of apps">
+                <div class="card">
+                    <img class="card-img-top" src="http://placehold.it/318x180" style="width: 100%;">
+                    <div class="card-block">
+                        <h4 class="card-title">${app.name}</h4>
+                        <p class="card-text">${app.perex}</p>
+                        <a route-href="route.bind: app.route.name" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
