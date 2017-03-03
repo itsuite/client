@@ -1,5 +1,5 @@
 import {inject, customElement} from 'aurelia-framework';
-import {AppService} from "src/apps/app-service";
+import {AppService} from "src/shared/app-service";
 
 @customElement('its-shared-navbar')
 @inject(AppService)

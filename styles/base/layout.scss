@@ -1,50 +1,94 @@
+html,
 body {
+  height: 100%;
+}
+
+.layout-boxed html,
+.layout-boxed body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
-body,
-html {
+.wrapper {
   height: 100%;
-}
-
-#wrapper {
   position: relative;
-  height: 100%;
-  transition: all 0.5s ease;
-  padding-left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 
-  &.toggled {
-    padding-left: 220px;
+  display: flex;
+  flex-flow: column;
 
-    #sidebar-wrapper {
-      width: 220px;
-    }
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
 
-    #content-wrapper {
-      margin-right: -220px;
-      position: absolute;
-    }
+  &:after {
+    clear: both;
   }
 }
 
-#sidebar-wrapper {
-  transition: all 0.5s ease;
-  background: #1a1a1a;
-  height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 0;
+.main-header {
+  position: relative;
+  max-height: 100px;
+  z-index: 1030;
+}
+
+.main-sidebar {
+  background-color: #222d32;
   position: absolute;
   top: 0;
-  left: 220px;
-  margin-left: -220px;
-  z-index: 1000;
+  left: 0;
+  padding-top: 50px;
+  min-height: 100%;
+  width: 230px;
+  z-index: 810;
+  transition: transform .3s ease-in-out,width .3s ease-in-out;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
+.main-content {
+  flex: 1 1 auto;
+  transition: transform .3s ease-in-out,margin .3s ease-in-out;
+  z-index: 820;
+  min-height: 250px;
+  padding: 15px;
+  background-color: #ecf0f5;
+
+  .sidebar-collapsed & {
+    margin-left: 50px;
+    z-index: 840;
   }
 }
 
-#content-wrapper {
-  width: 100%;
+.main-footer {
+  background: #fff;
+  padding: 15px;
+  color: #444;
+  border-top: 1px solid #d2d6de;
+  flex: 0 1 40px;
+  transition: transform .3s ease-in-out,margin .3s ease-in-out;
+  z-index: 820;
+}
+
+.has-sidebar {
+  .main-content,
+  .main-footer {
+      margin-left: 230px;
+  }
+}
+
+.sidebar-collapsed {
+  .main-content,
+  .main-footer {
+    transform: translate(0, 0);
+    transition: transform .3s ease-in-out,margin .3s ease-in-out;
+    margin-left: 50px !important;
+    z-index: 850;
+  }
 }

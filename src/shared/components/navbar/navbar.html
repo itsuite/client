@@ -1,5 +1,6 @@
 <template>
-    <nav class="navbar">
-        <a href="#" class="navbar-brand" innerhtml.bind="appService.current.name || 'Dashboard'"></a>
+    <nav class="navbar navbar-static-top">
+        <require from="shared/components/sidebar-switcher/sidebar-switcher"></require>
+        <its-shared-sidebar-switcher></its-shared-sidebar-switcher>
     </nav>
 </template>
