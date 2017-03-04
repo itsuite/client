@@ -2,6 +2,7 @@ import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 import {AppModule} from "src/shared/app-module";
+import {NavModel} from "aurelia-router";
 
 @inject(EventAggregator)
 export class AppService {
@@ -22,5 +23,13 @@ export class AppService {
 
     get current(): AppModule {
         return this._current;
+    }
+
+    public getMenu(): NavModel[] {
+        if (this.current && this.current.router) {
+            return this.current.router.navigation;
+        }
+
+        return [];
     }
 }

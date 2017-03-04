@@ -20,11 +20,7 @@ export class App {
 
     @computedFrom('appService.current')
     get menuLength() {
-        if (this.appService.current && this.appService.current.router) {
-            return this.appService.current.router.navigation.length;
-        }
-
-        return 0;
+        return this.appService.getMenu().length;
     }
 
     public configureRouter(config: RouterConfiguration, router: Router) {
