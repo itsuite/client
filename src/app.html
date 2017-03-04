@@ -5,7 +5,7 @@
     <div class="
         wrapper
         ${menuLength ? ' has-sidebar' : ''}
-        ${menuLength && sidebarToggle.open ? '' : ' sidebar-collapsed'}
+        ${menuLength && !sidebarToggle.open ? ' sidebar-collapsed' : ''}
     ">
         <header class="main-header">
             <!-- <logo></logo> -->
