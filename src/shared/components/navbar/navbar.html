@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-static-top">
         <require from="shared/components/sidebar-switcher/sidebar-switcher"></require>
-        <its-shared-sidebar-switcher></its-shared-sidebar-switcher>
+        <its-shared-sidebar-switcher if.bind="menuLength > 0"></its-shared-sidebar-switcher>
     </nav>
 </template>
