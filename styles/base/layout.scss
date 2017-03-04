@@ -50,6 +50,13 @@ body {
   width: 230px;
   z-index: 810;
   transition: transform .3s ease-in-out,width .3s ease-in-out;
+
+
+  .sidebar-collapsed & {
+    transform: translate(0, 0);
+    width: 50px !important;
+    z-index: 850;
+  }
 }
 
 .main-content {
@@ -61,7 +68,6 @@ body {
   background-color: #ecf0f5;
 
   .sidebar-collapsed & {
-    margin-left: 50px;
     z-index: 840;
   }
 }
@@ -74,6 +80,10 @@ body {
   flex: 0 1 40px;
   transition: transform .3s ease-in-out,margin .3s ease-in-out;
   z-index: 820;
+
+  .sidebar-collapsed & {
+    z-index: 850;
+  }
 }
 
 .has-sidebar {
@@ -88,7 +98,6 @@ body {
   .main-footer {
     transform: translate(0, 0);
     transition: transform .3s ease-in-out,margin .3s ease-in-out;
-    margin-left: 50px !important;
-    z-index: 850;
+    margin-left: 50px;
   }
 }
