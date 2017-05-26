@@ -1,39 +1,28 @@
 <template>
-    <require from="shared/components/navbar/navbar"></require>
-    <require from="shared/components/sidebar/sidebar"></require>
+    <require from="shared/core/nav-items/nav-items"></require>
 
-    <div class="
-        wrapper
-        ${menuLength ? ' has-sidebar' : ''}
-        ${menuLength && !sidebarToggle.open ? ' sidebar-collapsed' : ''}
-    ">
-        <header class="main-header">
-            <!-- <logo></logo> -->
-            <a href="#" class="app-logo">
-                <span class="logo-large" innerhtml.bind="appService.current.config.name"></span>
-                <span class="logo-collapsed">PM</span>
-            </a>
-
-            <require from="shared/components/navbar/navbar"></require>
-            <its-shared-navbar></its-shared-navbar>
+    <div>
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <a href="#" class="material-icons">menu</a>
+                    <span class="mdc-toolbar__title">${moduleDescription.name}</span>
+                </section>
+            </div>
         </header>
 
-        <aside class="main-sidebar" if.bind="menuLength">
-            <require from="shared/components/sidebar/sidebar"></require>
-            <its-shared-sidebar></its-shared-sidebar>
+        <aside class="mdc-temporary-drawer">
+            <nav class="mdc-temporary-drawer__drawer">
+                <header class="mdc-temporary-drawer__header">
+                    <div class="mdc-list">
+                        <suite-core-nav-items></suite-core-nav-items>
+                    </div>
+                </header>
+            </nav>
         </aside>
 
-        <div class="main-content">
+        <main class="page-content">
             <router-view></router-view>
-        </div>
-
-        <div class="main-footer">
-            <div class="pull-right hidden-xs">
-                IT Suite <strong>0.1.6</strong>
-            </div>
-
-            <strong>ITStudio s.r.o.</strong>
-        </div>
-
+        </main>
     </div>
 </template>

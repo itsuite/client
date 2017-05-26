@@ -1,40 +1,25 @@
-import {Router, RouterConfiguration} from 'aurelia-router';
-import {inject, computedFrom} from 'aurelia-framework';
 
-import {AppService} from './shared/app-service';
-import {RouteGeneratorService} from './shared/route-generator-service';
-import {SidebarToggleState} from "src/shared/components/sidebar/sidebar-toggle-state";
+import {autoinject} from 'aurelia-framework';
+import {EventAggregator} from 'aurelia-event-aggregator';
+import {RouteMapper} from 'aurelia-route-mapper';
 
-@inject(AppService, RouteGeneratorService, SidebarToggleState)
-export class App {
-    private appService: AppService;
-    private routeGeneratorService: RouteGeneratorService;
-    private router: Router;
-    private sidebarToggle: SidebarToggleState;
+import {ModuleContainer} from './module-manager/module-container';
+import {BaseApp} from "src/base-app";
 
-    public constructor(appService: AppService, routeGeneratorService: RouteGeneratorService, sidebarToggle: SidebarToggleState) {
-        this.appService = appService;
-        this.routeGeneratorService = routeGeneratorService;
-        this.sidebarToggle = sidebarToggle;
+import {description as dashboardDescription} from "src/modules/dashboard/description";
+import {description as showcaseDescription} from "src/modules/showcase/description";
+
+@autoinject()
+export class App extends BaseApp {
+
+    public constructor(moduleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator) {
+        super(moduleContainer, routeMapper, ea);
+
+        this.registerModule(dashboardDescription);
+        this.registerModule(showcaseDescription);
     }
 
-    @computedFrom('appService.current')
-    get menuLength() {
-        return this.appService.getMenu().length;
-    }
-
-    public configureRouter(config: RouterConfiguration, router: Router) {
-        config.title = 'IT Suite';
-
-        config.map([
-            { route: '/',   name: 'home',   moduleId: './apps/home/home', nav: true},
-            { route: '/pm', name: 'pm',     moduleId: './apps/project-management/project-management', nav: true}
-        ]);
-
-        this.router = router;
-    }
-
-    public async attached() {
-        await this.routeGeneratorService.configure(this.router);
+    get moduleDescription() {
+        return this.moduleContainer.current;
     }
 }

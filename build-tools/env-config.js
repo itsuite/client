@@ -5,7 +5,7 @@ if (typeof environment === 'undefined') {
 }
 
 try {
-    module.exports = require('../config/env/' + environment + '.json');
+    module.exports = require('../config/env/' + environment + '.js');
 } catch (e) {
     if (e.code !==  'MODULE_NOT_FOUND') {
         throw e;
