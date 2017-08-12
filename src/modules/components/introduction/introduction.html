@@ -1,0 +1,28 @@
+<template>
+
+
+    <h1>Ripple</h1>
+    <button rel="button" mdc-ripple mdc-button>Ripple effect</button>
+    <button rel="button" mdc-ripple mdc-button="primary: true; raised: true">Ripple effect</button>
+
+    <h1>Checkbox</h1>
+    <mdc-checkbox is-checked.bind="checkboxChecked"
+                  is-disabled.bind="checkboxDisabled"
+                  is-indeterminate.bind="checkboxIndeterminate"
+    >Checkbox</mdc-checkbox>
+
+    <i class="material-icons" mdc-ripple="unbounded: true">menu</i>
+
+    <button mdc-button="primary: true" click.delegate="checkboxDisabled = !checkboxDisabled">Disable</button>
+    <button mdc-button="primary: true" click.delegate="checkboxChecked = !checkboxChecked">Check</button>
+    <button mdc-button="primary: true" click.delegate="checkboxIndeterminate = !checkboxIndeterminate">Set indeterminate</button>
+
+    <h1>Cards</h1>
+    <mdc-card>
+        <div slot="actions">
+            <button class="mdc-button mdc-button--compact mdc-card__action">Action 1</button>
+            <button class="mdc-button mdc-button--compact mdc-card__action">Action 2</button>
+        </div>
+    </mdc-card>
+
+</template>

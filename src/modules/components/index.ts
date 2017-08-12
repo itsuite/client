@@ -8,7 +8,7 @@ import {RouteLink} from "src/shared/core/route-link";
 import {description} from "./description";
 
 @autoinject()
-export class Showcase implements Module {
+export class Components implements Module {
 
     public router: Router;
 
@@ -16,15 +16,14 @@ export class Showcase implements Module {
         private drawer: DrawerItems
     ) { }
 
-    public configureRouter(routerConfiguration: RouterConfiguration, router: Router) {
-        routerConfiguration.map(description.routeConfig.settings.childRoutes);
+    public configureRouter(config: RouterConfiguration, router: Router) {
+        config.map(description.routeConfig.settings.childRoutes);
         this.router = router;
     }
 
     public attached() {
         this.drawer.items = [
-            { title: 'Browse', route: new RouteLink('showcase/browse') },
-            { title: 'New', route: new RouteLink('showcase/new') }
+            { title: 'Buttons', route: new RouteLink('components/buttons') }
         ];
     }
 }

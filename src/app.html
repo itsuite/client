@@ -1,28 +1,52 @@
 <template>
-    <require from="shared/core/nav-items/nav-items"></require>
 
-    <div>
-        <header class="mdc-toolbar">
-            <div class="mdc-toolbar__row">
-                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <a href="#" class="material-icons">menu</a>
-                    <span class="mdc-toolbar__title">${moduleDescription.name}</span>
-                </section>
-            </div>
-        </header>
+    <require from="shared/ux/mdc-drawer/mdc-drawer"></require>
+    <require from="shared/ux/mdc-drawer/mdc-drawer-collapse"></require>
+    <require from="shared/ux/mdc-drawer/mdc-drawer-toolbar-spacer"></require>
+    <require from="shared/ux/mdc-drawer/mdc-drawer-selected"></require>
 
-        <aside class="mdc-temporary-drawer">
-            <nav class="mdc-temporary-drawer__drawer">
-                <header class="mdc-temporary-drawer__header">
-                    <div class="mdc-list">
-                        <suite-core-nav-items></suite-core-nav-items>
-                    </div>
-                </header>
-            </nav>
-        </aside>
+    <require from="shared/core/generate-href"></require>
+    <require from="shared/ux/mdc-ripple/mdc-ripple"></require>
 
-        <main class="page-content">
-            <router-view></router-view>
-        </main>
-    </div>
+    <header id="main-header" class="mdc-toolbar mdc-elevation--z4">
+        <div class="mdc-toolbar__row">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <button mdc-ripple mdc-drawer-collapse="ref.bind: mainDrawer;" class="material-icons mdc-toolbar__icon">menu</button>
+                <a href="/" class="main-logo">
+                    <img src="https://ssl.gstatic.com/images/branding/lockups/2x/lockup_gplus_light_color_88x24dp.png">
+                </a>
+
+                <span class="mdc-toolbar__title app-title">${moduleDescription.title}</span>
+
+
+
+            </section>
+        </div>
+    </header>
+
+    <mdc-drawer type="temporary" view-model.ref="mainDrawer">
+
+        <a repeat.for="item of navigation"
+           class="mdc-list-item"
+           mdc-ripple
+           mdc-drawer-selected
+           suite-core-generate-href="route.bind: item.route"
+        >
+            ${item.title}
+        </a>
+
+    </mdc-drawer>
+
+    <section id="breadcrumbs">
+        <div class="breadcrumbs mdc-layout-grid">
+            <ul>
+                <li><a href="#">Components</a></li>
+                <li><a href="#">Buttons</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <main id="page-content" class="mdc-layout-grid">
+        <router-view></router-view>
+    </main>
 </template>

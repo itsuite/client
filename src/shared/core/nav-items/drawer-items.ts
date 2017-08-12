@@ -15,16 +15,17 @@ export class DrawerItems {
     set items(items: DrawerLink[]) {
         this._items = items;
 
-        this.notify();
+        this.notifyChange();
     }
 
     get items() {
         return this._items;
     }
 
-    private notify() {
+    private notifyChange() {
         this.ea.publish('suite:nav-items:change', {
             items: this.items
         });
     }
 }
+

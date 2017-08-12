@@ -1,0 +1,14 @@
+<template>
+    <aside class="${baseClass} mdc-typography">
+        <nav class="${baseClass}__drawer">
+            <header class="${baseClass}__header" show.bind="$slots.defined('header')">
+                <div class="${baseClass}__header-content">
+                    <slot name="header"></slot>
+                </div>
+            </header>
+            <nav class="${baseClass}__content" show.bind="$slots.defined('__au-default-slot-key__')">
+                <slot></slot>
+            </nav>
+        </nav>
+    </aside>
+</template>

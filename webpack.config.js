@@ -91,7 +91,10 @@ let config = {
                             options: {
                                 // without sourcemaps resolve-url-loader fails for some reason
                                 // this is mandatory for now
-                                sourceMap: true
+                                sourceMap: true,
+                                includePaths: [
+                                    path.resolve('node_modules')
+                                ]
                             }
                         }
                     ]

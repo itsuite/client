@@ -1,8 +1,47 @@
+@import 'base/variables';
 
 .mdl-layout__drawer {
-  margin-top: 64px;
+  margin-top: 16px;
 }
 
 .mdl-layout__obfuscator {
   margin-top: 64px;
+}
+
+.breadcrumbs {
+  background: #ECEFF1;
+  overflow: auto;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      float: left;
+      font-size: 14px;
+
+      a {
+        color: $mdc-theme-primary;
+        text-decoration: none;
+      }
+
+      margin: 0 8px 0 0;
+
+      &:after {
+        content: '\203A';
+        margin-left: 8px;
+        opacity: .5;
+      }
+
+
+      &:last-child {
+        margin: 0;
+
+        &:after {
+          content: '';
+        }
+      }
+    }
+  }
 }

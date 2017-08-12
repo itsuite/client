@@ -13,7 +13,7 @@ export const description: ModuleDescription = {
         settings: {
             childRoutes: [
                 {
-                    route: '/',
+                    route: ['', '/'],
                     moduleId: './feed/feed',
                     nav: true,
                     title: 'Feed'

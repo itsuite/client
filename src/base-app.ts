@@ -11,8 +11,8 @@ export class BaseApp {
     public routeMapper: RouteMapper;
     protected moduleContainer: ModuleContainer;
 
-    public constructor(ModuleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator) {
-        this.moduleContainer = ModuleContainer;
+    public constructor(moduleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator) {
+        this.moduleContainer = moduleContainer;
         this.routeMapper = routeMapper;
 
         ea.subscribe('router:navigation:success', route => {
@@ -20,8 +20,9 @@ export class BaseApp {
         });
     }
 
-    protected registerModule(moduleDescription: ModuleDescription) {
+    protected add(moduleDescription: ModuleDescription): this {
         this.moduleContainer.modules.push(moduleDescription);
+        return this;
     }
 
     public configureRouter(config: RouterConfiguration, router: Router) {

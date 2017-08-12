@@ -1,0 +1,26 @@
+<template>
+    <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+            <input id.bind="inputId"
+                   type="checkbox"
+                   checked.bind="isChecked"
+                   disabled.bind="isDisabled"
+                   change.delegate="handleChange($event)"
+                   class="mdc-checkbox__native-control"
+            >
+
+            <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark"
+                     viewBox="0 0 24 24">
+                    <path class="mdc-checkbox__checkmark__path"
+                          fill="none"
+                          stroke="white"
+                          d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+            </div>
+        </div>
+
+        <label for.bind="inputId"><slot></slot></label>
+    </div>
+</template>
