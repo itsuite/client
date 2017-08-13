@@ -10,11 +10,15 @@ import {description as dashboard} from "src/modules/dashboard/description";
 import {description as components} from "src/modules/components/description";
 import {description as projectManagement} from "src/modules/project-management/description";
 import {DrawerItems} from "src/shared/core/nav-items/drawer-items";
+import {RouteLink} from "src/shared/core/route-link";
 
 @autoinject()
 export class App extends BaseApp {
 
-    public constructor(moduleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator, private drawerItems: DrawerItems) {
+    public constructor(
+        moduleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator,
+        private drawerItems: DrawerItems
+    ) {
         super(moduleContainer, routeMapper, ea);
 
         // enable modules here
@@ -33,15 +37,22 @@ export class App extends BaseApp {
     }
 
     get moduleList() {
-        let list: [] = [];
+        let list: Array<object> = [];
 
         for (let module of this.moduleContainer.modules) {
+
+            let route: string = Array.isArray(module.routeConfig.route) ? module.routeConfig.route[0] : module.routeConfig.route;
+
             list.push({
                 name: module.title,
-                route: module.routeConfig
+                route: new RouteLink(route)
             });
         }
 
         return list;
+    }
+
+    public route(route: RouteLink) {
+        this.router.navigate(route.route, route.params);
     }
 }

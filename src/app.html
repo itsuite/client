@@ -2,7 +2,6 @@
 
     <require from="shared/ux/mdc-drawer/mdc-drawer"></require>
     <require from="shared/ux/mdc-drawer/mdc-drawer-collapse"></require>
-    <require from="shared/ux/mdc-drawer/mdc-drawer-toolbar-spacer"></require>
     <require from="shared/ux/mdc-drawer/mdc-drawer-selected"></require>
 
     <require from="shared/core/generate-href"></require>
@@ -11,20 +10,39 @@
     <header id="main-header" class="mdc-toolbar mdc-elevation--z4">
         <div class="mdc-toolbar__row">
             <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                <button mdc-ripple mdc-drawer-collapse="ref.bind: mainDrawer;" class="material-icons mdc-toolbar__icon">menu</button>
+                <i mdc-ripple
+                   data-mdc-ripple-is-unbounded
+                   mdc-drawer-collapse="ref.bind: mainDrawer;"
+                   class="mdc-icon-toggle mdc-toolbar__icon material-icons mdc-theme--text-primary-on-primary"
+                >menu</i>
+
                 <a href="/" class="main-logo">
                     <img src="https://ssl.gstatic.com/images/branding/lockups/2x/lockup_gplus_light_color_88x24dp.png">
                 </a>
 
-                <span class="mdc-toolbar__title app-title">${moduleDescription.title}</span>
+                <span mdc-menu="ref.bind: moduleSwitcherMenu; auto-close: true"
+                      class="mdc-toolbar__title app-title"
+                >
+                    ${moduleDescription.title}
+                    <i class="module-switcher-icon material-icons">arrow_drop_down</i>
+                </span>
 
-
-
+                <mdc-menu-contents ref="moduleSwitcherMenu">
+                    <ul class="mdc-list">
+                        <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="route(item.route)">
+                            ${item.name}
+                        </li>
+                    </ul>
+                </mdc-menu-contents>
             </section>
         </div>
     </header>
 
-    <mdc-drawer type="temporary" view-model.ref="mainDrawer">
+    <mdc-drawer id="main-drawer" type="temporary" view-model.ref="mainDrawer">
+
+        <div slot="header">
+            user@gmail.com
+        </div>
 
         <a repeat.for="item of navigation"
            class="mdc-list-item"

@@ -26,14 +26,14 @@ export abstract class SlotControlCustomElement {
      * @returns {boolean}
      */
     public slotDefined(...slots: string[]): boolean {
-        console.log('asking for ' + slots.join(','));
+        //console.log('asking for ' + slots.join(','));
         for (let slot of slots) {
             if (this.slots.hasOwnProperty(slot) && this.slots[slot].children.length) {
                 return true;
             }
         }
 
-        console.log('' + slots.join(',') + ' not defined though, only ' + Object.keys(this.slots).join(', ') + ' defined');
+        //console.log('' + slots.join(',') + ' not defined though, only ' + Object.keys(this.slots).join(', ') + ' defined');
 
         return false;
     }

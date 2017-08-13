@@ -1,7 +1,8 @@
 @import 'base/variables';
 
 #main-header {
-  padding: 6px 12px;
+
+  z-index: 6; // higher than drawer (5)
 
   .main-logo {
     padding: 16px 0;
@@ -16,5 +17,15 @@
 
   .app-title {
     color: $mdc-theme-accent;
+    cursor: pointer;
+
+    .module-switcher-icon {
+      float: right;
+    }
+  }
+
+  .mdc-ripple-surface {
+    --mdc-ripple-fg-scale: 1.5 !important;
+    height: auto;
   }
 }

@@ -8,6 +8,7 @@ export function configure(aurelia: FrameworkConfiguration) {
         './mdc-dialog/mdc-dialog',
         './mdc-drawer/mdc-drawer',
         './mdc-ripple/mdc-ripple',
-        //'./mdc-menu/mdc-menu',
+        './mdc-menu/mdc-menu',
+        './mdc-menu/mdc-menu-contents.html'
     ]);
 }

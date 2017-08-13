@@ -15,6 +15,7 @@ export class MdcRippleCustomAttribute {
 
     public bind() {
         this.mdcRipple = new MDCRipple(this.element);
+        this.mdcRipple.unbounded = true;
     }
 
     public attached() {

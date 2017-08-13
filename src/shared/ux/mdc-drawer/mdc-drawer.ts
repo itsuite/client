@@ -27,6 +27,10 @@ export class MdcDrawerCustomElement extends SlotControlCustomElement {
         this.typesChanged(this.type);
     }
 
+    public detached() {
+        this.mdcDrawer = null;
+    }
+
     get baseClass(): string {
         return 'mdc-' + this.type + '-drawer';
     }
