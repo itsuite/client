@@ -127,7 +127,8 @@ let config = {
                 sheets: lodash.map(cdnConfig.sheets, 'url')
             },
 
-            title: 'IT Suite'
+            title: 'IT Suite',
+            baseHref: '/'
         }),
 
         new AureliaPlugin({
