@@ -35,8 +35,7 @@ let config = {
     output: {
         path: outDir,
         filename: '[name]-[chunkhash].js',
-        sourceMapFilename: '[name]-[chunkhash].map',
-        publicPath: process.env.APP_BASE_HREF
+        sourceMapFilename: '[name]-[chunkhash].map'
     },
 
     resolve: {
@@ -128,7 +127,7 @@ let config = {
             },
 
             title: 'IT Suite',
-            baseHref: '/'
+            baseHref: baseUrl
         }),
 
         new AureliaPlugin({
