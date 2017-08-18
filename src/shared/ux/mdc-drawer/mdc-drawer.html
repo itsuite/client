@@ -2,6 +2,13 @@
     <aside class="${baseClass} mdc-typography">
 
         <nav class="${baseClass}__drawer">
+
+            <div show.bind="$slots.defined('test')">
+                hello
+                <slot name="test"></slot>
+            </div>
+
+
             <header class="${baseClass}__header" show.bind="$slots.defined('header')">
                 <div class="${baseClass}__header-content">
                     <slot name="header"></slot>

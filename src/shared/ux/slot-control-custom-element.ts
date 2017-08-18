@@ -7,9 +7,21 @@ export abstract class SlotControlCustomElement {
 
     protected initSlotControl() {
         let element = <any> this.element;
+        let auSlots = element.au.controller.view.slots;
+        let slots = {};
 
-        // for some reason the slots object doesn't have the Object prototype
-        this.slots = Object.assign({}, element.au.controller.view.slots);
+        for (let key of Object.keys(auSlots)) {
+            let slot = auSlots[key];
+
+            if (slot.hasOwnProperty('children') && slot.children.length) {
+                slot.children = slot.children.filter((item) => item.nodeType !== Node.COMMENT_NODE);
+            }
+
+            slots[key] = slot;
+        }
+
+        // need to assign at once, otherwise @computedFrom doesn't trigger change on $slots
+        this.slots = slots;
     }
 
     @computedFrom('slots')
@@ -26,14 +38,12 @@ export abstract class SlotControlCustomElement {
      * @returns {boolean}
      */
     public slotDefined(...slots: string[]): boolean {
-        //console.log('asking for ' + slots.join(','));
+
         for (let slot of slots) {
             if (this.slots.hasOwnProperty(slot) && this.slots[slot].children.length) {
                 return true;
             }
         }
-
-        //console.log('' + slots.join(',') + ' not defined though, only ' + Object.keys(this.slots).join(', ') + ' defined');
 
         return false;
     }

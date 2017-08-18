@@ -21,8 +21,8 @@ export class MdcDrawerCustomElement extends SlotControlCustomElement {
     }
 
     public attached() {
-        this.initSlotControl();
 
+        this.initSlotControl();
         this.isAttached = true;
         this.typesChanged(this.type);
     }
