@@ -16,10 +16,12 @@ import {RouteLink} from "src/shared/core/route-link";
 export class App extends BaseApp {
 
     public constructor(
-        moduleContainer: ModuleContainer, routeMapper: RouteMapper, ea: EventAggregator,
-        private drawerItems: DrawerItems
+        moduleContainer: ModuleContainer,
+        routeMapper: RouteMapper,
+        ea: EventAggregator,
+        drawerItems: DrawerItems
     ) {
-        super(moduleContainer, routeMapper, ea);
+        super(moduleContainer, routeMapper, ea, drawerItems);
 
         // enable modules here
         this
@@ -40,12 +42,9 @@ export class App extends BaseApp {
         let list: Array<object> = [];
 
         for (let module of this.moduleContainer.modules) {
-
-            let route: string = Array.isArray(module.routeConfig.route) ? module.routeConfig.route[0] : module.routeConfig.route;
-
             list.push({
                 name: module.title,
-                route: new RouteLink(route)
+                route: new RouteLink(module.routeConfig.name)
             });
         }
 

@@ -13,8 +13,9 @@ export const description: ModuleDescription = {
         settings: {
             childRoutes: [
                 {
-                    route: ['', '/'],
+                    route: '/',
                     moduleId: './overview/overview',
+                    name: 'overview',
                     nav: true,
                     title: 'Overview'
                 }
