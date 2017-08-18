@@ -52,6 +52,6 @@ export class App extends BaseApp {
     }
 
     public route(route: RouteLink) {
-        this.router.navigate(route.route, route.params);
+        this.router.navigateToRoute(route.route, route.params);
     }
 }
