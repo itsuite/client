@@ -1,9 +1,4 @@
-
-export class RouteLink {
-
-    public constructor(
-        public route: string,
-        public params ?: object
-    ) {}
-
+export interface RouteLink {
+    name: string,
+    params ?: object
 }

@@ -42,9 +42,12 @@ export class App extends BaseApp {
         let list: Array<object> = [];
 
         for (let module of this.moduleContainer.modules) {
+
+            let link: RouteLink = {name: module.routeConfig.name};
+
             list.push({
                 name: module.title,
-                route: new RouteLink(module.routeConfig.name)
+                route: link
             });
         }
 
@@ -52,6 +55,6 @@ export class App extends BaseApp {
     }
 
     public route(route: RouteLink) {
-        this.router.navigateToRoute(route.route, route.params);
+        this.router.navigateToRoute(route.name, route.params);
     }
 }

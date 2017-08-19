@@ -4,7 +4,7 @@
     <require from="shared/ux/mdc-drawer/mdc-drawer-collapse"></require>
     <require from="shared/ux/mdc-drawer/mdc-drawer-selected"></require>
 
-    <require from="shared/core/generate-href"></require>
+    <require from="shared/core/href"></require>
     <require from="shared/ux/mdc-ripple/mdc-ripple"></require>
 
     <header id="main-header" class="mdc-toolbar mdc-elevation--z4">
@@ -49,7 +49,7 @@
                class="mdc-list-item"
                mdc-ripple
                mdc-drawer-selected
-               suite-core-generate-href="route.bind: item.route"
+               suite-href.bind="item.route.name"
             >
                 <i if.bind="item.icon"
                    class="material-icons mdc-list-item__start-detail"

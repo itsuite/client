@@ -1,12 +1,12 @@
 import {DOM} from 'aurelia-pal';
 import {customAttribute, inject, bindable} from 'aurelia-framework';
 import {RouteMapper} from "aurelia-route-mapper";
-import {RouteLink} from "src/shared/core/route-link";
 
-@customAttribute('suite-core-generate-href')
+@customAttribute('suite-href')
 @inject(RouteMapper, DOM.Element)
-export class GenerateHrefCustomAttribute {
-    @bindable({ primaryProperty: true}) route: RouteLink;
+export class SuiteHrefCustomAttribute {
+    @bindable({ primaryProperty: true}) name: string;
+    @bindable params: {} = {};
     @bindable({ defaultValue: 'href' }) attribute: string;
 
     public constructor(
@@ -14,8 +14,16 @@ export class GenerateHrefCustomAttribute {
         private element
     ) { }
 
-    public routeChanged() {
-        let href = this.routeMapper.generate(this.route.route, this.route.params);
+    public nameChanged() {
+        this.regenerateHref();
+    }
+
+    public paramsChanged() {
+        this.regenerateHref();
+    }
+
+    private regenerateHref() {
+        let href = this.routeMapper.generate(this.name, this.params || {});
 
         if (this.element.au.controller) {
             this.element.au.controller.viewModel[this.attribute] = href;

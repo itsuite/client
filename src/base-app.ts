@@ -5,7 +5,6 @@ import {ModuleDescription} from "src/module-manager/module-description";
 import {ModuleContainer} from "src/module-manager/module-container";
 import {EventAggregator} from "aurelia-event-aggregator";
 import {DrawerLink} from "src/shared/core/nav-items/drawer-link";
-import {RouteLink} from "src/shared/core/route-link";
 import {DrawerItems} from "src/shared/core/nav-items/drawer-items";
 
 export class BaseApp {
@@ -62,14 +61,16 @@ export class BaseApp {
             }
         }
     }
-    
+
     private createNavFromModule(module: ModuleDescription): DrawerLink[] {
         return module.routeConfig.settings.childRoutes.reduce((items: DrawerLink[], route) => {
             if (route.title) {
                 items.push({
                     title: route.title,
                     icon: route.icon,
-                    route: new RouteLink(module.routeConfig.name + '/' + route.name)
+                    route: {
+                        name: module.routeConfig.name + '/' + route.name
+                    }
                 });
             }
 
