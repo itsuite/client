@@ -68,7 +68,7 @@ export class BaseApp {
             if (route.title) {
                 items.push({
                     title: route.title,
-                    icon: route.navIcon || null,
+                    icon: route.icon,
                     route: new RouteLink(module.routeConfig.name + '/' + route.name)
                 });
             }

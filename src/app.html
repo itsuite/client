@@ -51,7 +51,9 @@
                mdc-drawer-selected
                suite-core-generate-href="route.bind: item.route"
             >
-                ${item.title}
+                <i if.bind="item.icon"
+                   class="material-icons mdc-list-item__start-detail"
+                >${item.icon}</i> ${item.title}
             </a>
         </div>
     </mdc-drawer>

@@ -18,14 +18,15 @@ export const description: ModuleDescription = {
                     name: 'feed',
                     nav: true,
                     title: 'Feed',
-                    navIcon: ''
+                    icon: 'apps'
                 },
                 {
                     route: '/users',
                     moduleId: './users/users',
                     name: 'users',
                     nav: true,
-                    title: 'Users'
+                    title: 'Users',
+                    icon: 'person'
                 }
             ]
         }
