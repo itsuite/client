@@ -44,15 +44,16 @@
             user@gmail.com
         </div>
 
-        <a repeat.for="item of navigation"
-           class="mdc-list-item"
-           mdc-ripple
-           mdc-drawer-selected
-           suite-core-generate-href="route.bind: item.route"
-        >
-            ${item.title}
-        </a>
-
+        <div>
+            <a repeat.for="item of navigation"
+               class="mdc-list-item"
+               mdc-ripple
+               mdc-drawer-selected
+               suite-core-generate-href="route.bind: item.route"
+            >
+                ${item.title}
+            </a>
+        </div>
     </mdc-drawer>
 
     <section id="breadcrumbs">
