@@ -7,6 +7,7 @@ export async function configure(aurelia: Aurelia) {
         .plugin('aurelia-computed', { // optimized computing and debug info about dirty checks
             enableLogging: true
         })
+        .feature('shared/core')
         .feature('shared/ux');
 
     await aurelia.start();

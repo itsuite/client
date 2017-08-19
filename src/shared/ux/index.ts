@@ -7,6 +7,8 @@ export function configure(aurelia: FrameworkConfiguration) {
         './mdc-checkbox/mdc-checkbox',
         './mdc-dialog/mdc-dialog',
         './mdc-drawer/mdc-drawer',
+        './mdc-drawer/mdc-drawer-selected',
+        './mdc-drawer/mdc-drawer-collapse',
         './mdc-ripple/mdc-ripple',
         './mdc-menu/mdc-menu',
         './mdc-menu/mdc-menu-contents.html'
