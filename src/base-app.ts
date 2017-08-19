@@ -57,7 +57,7 @@ export class BaseApp {
         let moduleId = instruction.config.moduleId;
 
         for (let module of this.moduleContainer.modules) {
-            if (module.routeConfig.moduleId == moduleId) {
+            if (module.routeConfig.moduleId == moduleId && module != this.moduleContainer.current) {
                 this.switchModule(module);
             }
         }
