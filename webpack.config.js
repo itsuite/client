@@ -3,49 +3,41 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const AureliaPlugin = require('aurelia-webpack-plugin');
+const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const project = require('./package.json');
 const cdnConfig = require('./config/cdn');
 const envConfig = require('./build-tools/env-config');
 
-const title = 'IT Suite';
 const baseUrl = '/';
-const rootDir = path.resolve();
 const srcDir = path.resolve('src');
 const outDir = path.resolve('public');
 
-const aureliaBootstrap = [
-    'aurelia-bootstrapper-webpack',
-    'aurelia-polyfills',
-    'aurelia-pal-browser',
-    'regenerator-runtime',
-];
-
-const aureliaModules = Object.keys(project.dependencies).filter(dep => dep.startsWith('aurelia-'));
-
 let config = {
     entry: {
-        'app': ['./src/main', './styles/app.scss', './styles/vendor.scss'], // filled by aurelia-webpack-plugin
-        'aurelia-bootstrap': aureliaBootstrap,
-        'aurelia-modules': aureliaModules
+        "main": "aurelia-bootstrapper"
     },
 
     output: {
         path: outDir,
-        filename: '[name]-[chunkhash].js',
-        sourceMapFilename: '[name]-[chunkhash].map'
+        filename: '[name]-[hash].js',
+        sourceMapFilename: '[name]-[hash].map',
+        publicPath: ''
     },
 
     resolve: {
         alias: {
             'src': srcDir
         },
-        extensions: [
-            '.ts', '.js', '.json', '.css', '.scss', '.html',
-            '.async.ts', '.async.js', '.async.json'
-        ]
+        extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
+        modules: ["src", "node_modules"]
+    },
+
+    devServer: {
+        contentBase: outDir,
+        historyApiFallback: {
+            index: outDir + '/index.html'
+        }
     },
 
     externals: lodash.reduce(cdnConfig.scripts, function(hash, value) {
@@ -61,7 +53,7 @@ let config = {
         rules: [
             {
                 test: /\.html$/,
-                use: 'raw-loader'
+                use: 'html-loader'
             },
             {
                 test: /\.ts/,
@@ -131,10 +123,8 @@ let config = {
         }),
 
         new AureliaPlugin({
-            root: rootDir,
-            src: srcDir,
-            title: title,
-            baseUrl: baseUrl
+            includeAll: 'src',
+            aureliaApp: 'main'
         }),
 
         new ExtractTextPlugin({

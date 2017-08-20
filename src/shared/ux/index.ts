@@ -1,4 +1,5 @@
 import {FrameworkConfiguration} from "aurelia-framework";
+import {PLATFORM} from 'aurelia-pal';
 
 export function configure(aurelia: FrameworkConfiguration) {
     aurelia.globalResources([
@@ -12,5 +13,5 @@ export function configure(aurelia: FrameworkConfiguration) {
         './mdc-ripple/mdc-ripple',
         './mdc-menu/mdc-menu',
         './mdc-menu/mdc-menu-contents.html'
-    ]);
+    ].map((item) => PLATFORM.moduleName(item)));
 }

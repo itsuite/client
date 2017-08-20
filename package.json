@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "aurelia-bootstrapper-webpack": "^1.1.0",
+    "aurelia-bootstrapper": "^2.1.1",
     "aurelia-computed": "^1.0.0",
     "aurelia-event-aggregator": "^1.0.1",
     "aurelia-framework": "^1.0.8",
@@ -21,8 +21,7 @@
     "@types/core-js": "^0.9.35",
     "@types/lodash": "^4.14.53",
     "@types/node": "^7.0.5",
-    "aurelia-bootstrapper-webpack": "^1.1.0",
-    "aurelia-webpack-plugin": "^1.2.2",
+    "aurelia-webpack-plugin": "^2.0.0-rc.3",
     "autoprefixer": "^6.7.5",
     "awesome-typescript-loader": "^3.0.8",
     "cross-env": "^3.1.4",
@@ -47,11 +46,13 @@
     "ts-loader": "^2.0.1",
     "typescript": "^2.2.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
     "clean-compiled": "rimraf public/*",
-    "build": "npm run clean-compiled && webpack",
+    "server": "cross-env NODE_ENV=development webpack-dev-server --inline",
+    "build": "npm run clean-compiled && webpack --display-modules",
     "build:dev": "cross-env NODE_ENV=development npm run build",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "watch": "npm run clean-compiled && cross-env NODE_ENV=development webpack --watch"
