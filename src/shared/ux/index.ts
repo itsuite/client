@@ -11,6 +11,7 @@ export function configure(aurelia: FrameworkConfiguration) {
         './mdc-drawer/mdc-drawer-collapse',
         './mdc-ripple/mdc-ripple',
         './mdc-menu/mdc-menu',
-        './mdc-menu/mdc-menu-contents.html'
+        './mdc-menu/mdc-menu-contents.html',
+        './suite-breadcrumbs/suite-breadcrumbs'
     ]);
 }

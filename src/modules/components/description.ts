@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
         route: '/components',
         name: 'components',
         moduleId: 'modules/components/index',
+        title: 'Components',
+        breadcrumbs: true,
         settings: {
             childRoutes: [
                 {
@@ -23,6 +25,7 @@ export const description: ModuleDescription = {
                     name: 'buttons',
                     moduleId: './buttons/buttons',
                     nav: true,
+                    breadcrumbs: true,
                     title: 'Buttons'
                 }
             ]

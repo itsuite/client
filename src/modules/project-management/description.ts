@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
         route: '/projects',
         name: 'project-management',
         moduleId: 'modules/project-management/index',
+        title: 'Project Management',
+        breadcrumbs: true,
 
         settings: {
             childRoutes: [

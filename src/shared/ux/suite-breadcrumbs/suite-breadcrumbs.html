@@ -1,0 +1,14 @@
+<template>
+    <div class="breadcrumbs mdc-layout-grid">
+        <ul>
+            <li repeat.for="instruction of instructions">
+                <template if.bind="$last">${instruction.config.navModel.title}</template>
+                <template if.bind="!$last">
+                    <a suite-href="name.bind: instruction.config.name; params.bind: instruction.params">
+                        ${instruction.config.navModel.title}
+                    </a>
+                </template>
+            </li>
+        </ul>
+    </div>
+</template>

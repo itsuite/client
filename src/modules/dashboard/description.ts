@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
         route: '/dashboard',
         name: 'dashboard',
         moduleId: 'modules/dashboard/index',
+        title: 'Dashboard',
+        breadcrumbs: true,
 
         settings: {
             childRoutes: [
@@ -26,7 +28,8 @@ export const description: ModuleDescription = {
                     name: 'users',
                     nav: true,
                     title: 'Users',
-                    icon: 'person'
+                    icon: 'person',
+                    breadcrumbs: true
                 }
             ]
         }
