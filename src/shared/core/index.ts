@@ -3,6 +3,6 @@ import {PLATFORM} from 'aurelia-pal';
 
 export function configure(aurelia: FrameworkConfiguration) {
     aurelia.globalResources([
-        './suite-href/suite-href'
-    ].map((item) => PLATFORM.moduleName(item)));
+        PLATFORM.moduleName('shared/core/suite-href/suite-href')
+    ]);
 }
