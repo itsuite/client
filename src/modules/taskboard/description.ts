@@ -3,13 +3,13 @@ import {PLATFORM} from 'aurelia-pal';
 
 export const description: ModuleDescription = {
 
-    title: 'Project Management',
-    perex: 'pm',
+    title: 'Taskboard',
+    perex: '',
 
     routeConfig: {
-        route: '/projects',
-        name: 'project-management',
-        moduleId: PLATFORM.moduleName('modules/project-management/project-management'),
+        route: '/taskboard',
+        name: 'taskboard',
+        moduleId: PLATFORM.moduleName('modules/taskboard/taskboard'),
 
         settings: {
             childRoutes: [

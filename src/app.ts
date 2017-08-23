@@ -8,7 +8,7 @@ import {BaseApp} from "src/base-app";
 
 import {description as dashboard} from "src/modules/dashboard/description";
 import {description as components} from "src/modules/components/description";
-import {description as projectManagement} from "src/modules/project-management/description";
+import {description as taskboard} from "src/modules/taskboard/description";
 import {DrawerItems} from "src/shared/core/nav-items/drawer-items";
 import {RouteLink} from "src/shared/core/route-link";
 
@@ -27,7 +27,7 @@ export class App extends BaseApp {
         this
             .add(dashboard)
             .add(components)
-            .add(projectManagement);
+            .add(taskboard);
     }
 
     get moduleDescription() {
