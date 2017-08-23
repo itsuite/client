@@ -1,15 +1,15 @@
 import {customAttribute, inject, Parent, bindable} from 'aurelia-framework';
-import {MdcDrawerCustomElement} from "src/shared/ux/mdc-drawer/mdc-drawer";
+import {MdcDrawer} from "src/shared/ux/mdc-drawer/mdc-drawer";
 import * as boolean from 'boolean';
 
 @customAttribute('mdc-drawer-selected')
-@inject(Parent.of(MdcDrawerCustomElement), Element)
-export class MdcDrawerSelectedCustomAttribute {
+@inject(Parent.of(MdcDrawer), Element)
+export class MdcDrawerSelected {
 
     @bindable public enabled = true;
 
     public constructor(
-        private drawer: MdcDrawerCustomElement,
+        private drawer: MdcDrawer,
         private element: HTMLElement
     ) {}
 

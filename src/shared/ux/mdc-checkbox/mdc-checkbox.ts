@@ -5,7 +5,7 @@ import {UidGenerator} from 'src/shared/ux/support/uid-generator';
 
 @customElement('mdc-checkbox')
 @autoinject()
-export class MdcCheckboxCustomElement {
+export class MdcCheckbox {
     @bindable({ defaultBindingMode: bindingMode.twoWay }) isChecked = false;
     @bindable({ defaultBindingMode: bindingMode.twoWay }) isIndeterminate = false;
     @bindable() isDisabled = false;

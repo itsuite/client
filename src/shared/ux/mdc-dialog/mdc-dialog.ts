@@ -3,7 +3,7 @@ import {MDCDialog} from '@material/dialog';
 
 @autoinject()
 @customElement('mdc-dialog')
-export class MdcDialogCustomElement {
+export class MdcDialog {
 
     private mdcDialog: MDCDialog;
 

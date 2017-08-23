@@ -1,10 +1,10 @@
 import {customElement, inject, bindable} from 'aurelia-framework';
 import {MDCTemporaryDrawer, MDCPersistentDrawer} from '@material/drawer';
-import {SlotControlCustomElement} from "src/shared/ux/slot-control-custom-element";
+import {SlotControl} from "src/shared/ux/support/slot-control";
 
 @inject(Element)
 @customElement('mdc-drawer')
-export class MdcDrawerCustomElement extends SlotControlCustomElement {
+export class MdcDrawer extends SlotControl {
 
     public mdcDrawer: MDCTemporaryDrawer | MDCPersistentDrawer;
     private allowedTypes: string[] = [

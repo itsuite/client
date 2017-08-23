@@ -1,10 +1,9 @@
-
 import {bindable, customAttribute, autoinject} from 'aurelia-framework';
-import {ElementTools} from '../element-tools';;
+import {ElementTools} from 'src/shared/ux/support/element-tools';;
 
 @customAttribute('mdc-button')
 @autoinject()
-export class MdcButtonCustomAttribute {
+export class MdcButton {
 
     @bindable public accent = false;
     @bindable public raised = false;

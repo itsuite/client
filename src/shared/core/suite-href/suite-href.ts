@@ -4,7 +4,7 @@ import {RouteMapper} from "aurelia-route-mapper";
 
 @customAttribute('suite-href')
 @inject(RouteMapper, DOM.Element)
-export class SuiteHrefCustomAttribute {
+export class SuiteHref {
     @bindable({ primaryProperty: true}) name: string;
     @bindable params: {} = {};
     @bindable({ defaultValue: 'href' }) attribute: string;

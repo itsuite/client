@@ -4,7 +4,7 @@ import {EventAggregator} from "aurelia-event-aggregator";
 
 @customElement('suite-breadcrumbs')
 @autoinject()
-export class SuiteBreadcrumbsCustomElement {
+export class SuiteBreadcrumbs {
 
     public router: Router;
     public instructions: NavigationInstruction[];

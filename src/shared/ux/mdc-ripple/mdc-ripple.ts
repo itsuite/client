@@ -5,7 +5,7 @@ import * as boolean from 'boolean';
 
 @customAttribute('mdc-ripple')
 @autoinject()
-export class MdcRippleCustomAttribute {
+export class MdcRipple {
 
     @bindable public unbounded = false;
 

@@ -4,7 +4,7 @@ import * as boolean from 'boolean';
 
 @customAttribute('mdc-menu')
 @inject(Element)
-export class MdcMenuCustomAttribute {
+export class MdcMenu {
     @bindable public ref: HTMLElement;
     @bindable public placement: string = 'top-left';
     @bindable public autoClose: boolean = false;

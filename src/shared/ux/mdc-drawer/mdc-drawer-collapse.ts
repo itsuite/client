@@ -2,7 +2,7 @@ import {inject, bindable, customAttribute} from 'aurelia-framework';
 
 @inject(Element)
 @customAttribute('mdc-drawer-collapse')
-export class MdcDrawerCollapseCustomAttribute {
+export class MdcDrawer {
     @bindable public ref;
 
     private attachableTo: string[] = [
