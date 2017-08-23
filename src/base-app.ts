@@ -25,56 +25,5 @@ export class BaseApp {
         });
     }
 
-    protected add(moduleDescription: ModuleDescription): this {
-        this.moduleContainer.modules.push(moduleDescription);
-        return this;
-    }
 
-    public configureRouter(config: RouterConfiguration, router: Router) {
-        config.title = 'IT Suite';
-        config.options.pushState = true;
-
-        let map: RouteConfig[] = [];
-        for (let module of this.moduleContainer.modules) {
-            map.push(module.routeConfig);
-        }
-
-        config.map(map);
-        this.routeMapper.map(map);
-
-        this.router = router;
-    }
-    
-    public switchModule(module: ModuleDescription) {
-        this.moduleContainer.current = module;
-        
-        this.drawerItems.items = this.createNavFromModule(module);
-        this.ea.publish('suite:module:change', {module});
-    }
-
-    private instructionChanged(instruction: NavigationInstruction) {
-        let moduleId = instruction.config.moduleId;
-
-        for (let module of this.moduleContainer.modules) {
-            if (module.routeConfig.moduleId == moduleId && module != this.moduleContainer.current) {
-                this.switchModule(module);
-            }
-        }
-    }
-
-    private createNavFromModule(module: ModuleDescription): DrawerLink[] {
-        return module.routeConfig.settings.childRoutes.reduce((items: DrawerLink[], route) => {
-            if (route.title) {
-                items.push({
-                    title: route.title,
-                    icon: route.icon,
-                    route: {
-                        name: module.routeConfig.name + '/' + route.name
-                    }
-                });
-            }
-
-            return items;
-        }, []);
-    }
 }

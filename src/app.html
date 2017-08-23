@@ -26,7 +26,7 @@
 
                 <mdc-menu-contents ref="moduleSwitcherMenu">
                     <ul class="mdc-list">
-                        <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="route(item.route)">
+                        <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="navigate(item.route)">
                             ${item.name}
                         </li>
                     </ul>
