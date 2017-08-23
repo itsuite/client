@@ -1,4 +1,5 @@
 import {ModuleDescription} from "src/module-manager/module-description";
+import {PLATFORM} from 'aurelia-pal';
 
 export const description: ModuleDescription = {
 
@@ -8,24 +9,21 @@ export const description: ModuleDescription = {
     routeConfig: {
         route: '/components',
         name: 'components',
-        moduleId: 'modules/components/index',
-        title: 'Components',
-        breadcrumbs: true,
+        moduleId: PLATFORM.moduleName('modules/components/components'),
         settings: {
             childRoutes: [
                 {
                     route: '/',
                     name: 'introduction',
-                    moduleId: './introduction/introduction',
+                    moduleId: PLATFORM.moduleName('./introduction/introduction'),
                     nav: true,
                     title: 'Introduction'
                 },
                 {
                     route: '/buttons',
                     name: 'buttons',
-                    moduleId: './buttons/buttons',
+                    moduleId: PLATFORM.moduleName('./buttons/buttons'),
                     nav: true,
-                    breadcrumbs: true,
                     title: 'Buttons'
                 }
             ]

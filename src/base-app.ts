@@ -64,7 +64,7 @@ export class BaseApp {
 
     private createNavFromModule(module: ModuleDescription): DrawerLink[] {
         return module.routeConfig.settings.childRoutes.reduce((items: DrawerLink[], route) => {
-            if (route.title && route.nav) {
+            if (route.title) {
                 items.push({
                     title: route.title,
                     icon: route.icon,

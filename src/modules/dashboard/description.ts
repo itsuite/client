@@ -1,4 +1,5 @@
 import {ModuleDescription} from "src/module-manager/module-description";
+import {PLATFORM} from 'aurelia-pal';
 
 export const description: ModuleDescription = {
 
@@ -8,15 +9,13 @@ export const description: ModuleDescription = {
     routeConfig: {
         route: '/dashboard',
         name: 'dashboard',
-        moduleId: 'modules/dashboard/index',
-        title: 'Dashboard',
-        breadcrumbs: true,
+        moduleId: PLATFORM.moduleName('modules/dashboard/dashboard'),
 
         settings: {
             childRoutes: [
                 {
                     route: '/',
-                    moduleId: './feed/feed',
+                    moduleId: PLATFORM.moduleName('./feed/feed'),
                     name: 'feed',
                     nav: true,
                     title: 'Feed',
@@ -24,12 +23,11 @@ export const description: ModuleDescription = {
                 },
                 {
                     route: '/users',
-                    moduleId: './users/users',
+                    moduleId: PLATFORM.moduleName('./users/users'),
                     name: 'users',
                     nav: true,
                     title: 'Users',
-                    icon: 'person',
-                    breadcrumbs: true
+                    icon: 'person'
                 }
             ]
         }

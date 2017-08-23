@@ -1,15 +1,18 @@
-import {Aurelia} from 'aurelia-framework';
+import {Aurelia, PLATFORM} from 'aurelia-framework';
+import * as Bluebird from 'bluebird';
 
-export async function configure(aurelia: Aurelia) {
+// remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
+Bluebird.config({ warnings: { wForgottenReturn: false } });
+
+export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .developmentLogging()
-        .plugin('aurelia-computed', { // optimized computing and debug info about dirty checks
+        .plugin(PLATFORM.moduleName('aurelia-computed'), { // optimized computing and debug info about dirty checks
             enableLogging: true
         })
-        .feature('shared/core')
-        .feature('shared/ux');
+        .plugin(PLATFORM.moduleName('shared/core'))
+        .plugin(PLATFORM.moduleName('shared/ux'));
 
-    await aurelia.start();
-    aurelia.setRoot('app');
+    aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }
