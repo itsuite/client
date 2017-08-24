@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
     routeConfig: {
         route: '/components',
         name: 'components',
+        breadcrumbs: true,
+        title: 'Components',
         moduleId: PLATFORM.moduleName('modules/components/components'),
         settings: {
             childRoutes: [
@@ -17,12 +19,14 @@ export const description: ModuleDescription = {
                     name: 'introduction',
                     moduleId: PLATFORM.moduleName('./introduction/introduction'),
                     nav: true,
+
                     title: 'Introduction',
                     icon: 'sd_storage'
                 },
                 {
                     route: '/buttons',
                     name: 'buttons',
+                    breadcrumbs: true,
                     moduleId: PLATFORM.moduleName('./buttons/buttons'),
                     nav: true,
                     title: 'Buttons',

@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
     routeConfig: {
         route: '/taskboard',
         name: 'taskboard',
+        title: 'Taskboard',
+        breadcrumbs: true,
         moduleId: PLATFORM.moduleName('modules/taskboard/taskboard'),
 
         settings: {

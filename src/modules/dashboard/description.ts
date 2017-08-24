@@ -9,6 +9,8 @@ export const description: ModuleDescription = {
     routeConfig: {
         route: '/dashboard',
         name: 'dashboard',
+        title: 'Dashboard',
+        breadcrumbs: true,
         moduleId: PLATFORM.moduleName('modules/dashboard/dashboard'),
 
         settings: {
@@ -26,6 +28,7 @@ export const description: ModuleDescription = {
                     moduleId: PLATFORM.moduleName('./users/users'),
                     name: 'users',
                     nav: true,
+                    breadcrumbs: true,
                     title: 'Users',
                     icon: 'person'
                 }
