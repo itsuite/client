@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
 
-    <% _.each(htmlWebpackPlugin.options.assets.sheets, function(value) { %>
+    <% _.each(htmlWebpackPlugin.options.metadata.sheets, function(value) { %>
     <link href="<%= value %>" rel="stylesheet">
     <% }) %>
 
@@ -17,7 +17,7 @@
 <body aurelia-app="main" class="mdc-typography">
 <noscript>Javascript is required</noscript>
 
-<% _.each(htmlWebpackPlugin.options.assets.scripts, function(value) { %>
+<% _.each(htmlWebpackPlugin.options.metadata.scripts, function(value) { %>
 <script src="<%= value %>"></script>
 <% }) %>
 

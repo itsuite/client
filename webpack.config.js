@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 const cdnConfig = require('./aurelia_project/cdn.json');
-const lodash = require('lodash');
 const {AureliaPlugin, ModuleDependenciesPlugin} = require('aurelia-webpack-plugin');
 const {optimize: {CommonsChunkPlugin}, ProvidePlugin} = require('webpack');
 const {TsConfigPathsPlugin, CheckerPlugin} = require('awesome-typescript-loader');
@@ -127,11 +126,11 @@ module.exports = ({environment, server, extractCss, coverage} = {}) => ({
         new HtmlWebpackPlugin({
             template: 'src/index.ejs',
             metadata: {
-                title, server, baseUrl
-            },
-            assets: {
-                scripts: lodash.map(cdnConfig.scripts, 'url'),
-                sheets: lodash.map(cdnConfig.sheets, 'url')
+                title: title,
+                server: server,
+                baseUrl: baseUrl,
+                scripts: cdnConfig.scripts,
+                sheets: cdnConfig.sheets
             }
         }),
         ...when(extractCss, new ExtractTextPlugin({
