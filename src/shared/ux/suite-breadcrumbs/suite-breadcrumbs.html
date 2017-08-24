@@ -1,5 +1,5 @@
 <template>
-    <div class="breadcrumbs mdc-layout-grid">
+    <div if.bind="instructions.length" class="breadcrumbs">
         <ul>
             <li repeat.for="instruction of instructions">
                 <template if.bind="$last">${instruction.config.navModel.title}</template>

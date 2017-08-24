@@ -110,7 +110,9 @@ body {
 
 .breadcrumbs {
   background: #ECEFF1;
-  overflow: auto;
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 32px;
 
   ul {
     margin: 0;
@@ -118,11 +120,11 @@ body {
     list-style: none;
 
     > li {
-      float: left;
-      font-size: 14px;
+      display: inline;
+      color: #5f7782;
 
       a {
-        color: $mdc-theme-primary;
+        color: #9badb6;
         text-decoration: none;
       }
 
