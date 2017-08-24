@@ -5,6 +5,7 @@ export const description: ModuleDescription = {
 
     title: 'Components',
     perex: 'Present static content to your customers',
+    thumbnail: 'http://icons.iconarchive.com/icons/cornmanthe3rd/plex/512/Media-play-icon.png',
 
     routeConfig: {
         route: '/components',

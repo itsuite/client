@@ -45,6 +45,14 @@ body {
 
   background: #263238;
 
+  &.app-switcher-open {
+    background: #181f23;
+
+    > ul li:hover {
+      background: lighten(#181f23, 3)
+    }
+  }
+
   > ul {
     list-style: none;
     padding: 0;
@@ -61,7 +69,7 @@ body {
       }
 
       &.active {
-        a .material-icons {
+        a .navigation-item-icon {
           color: $mdc-theme-accent;
         }
       }
@@ -71,7 +79,7 @@ body {
         text-decoration: none;
         display: block;
 
-        > .material-icons {
+        > .navigation-item-icon {
           vertical-align: middle;
           text-align: center;
           margin-right: 24px;

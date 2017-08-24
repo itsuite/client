@@ -5,6 +5,7 @@ export const description: ModuleDescription = {
 
     title: 'Taskboard',
     perex: '',
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/flatified/512/map.png',
 
     routeConfig: {
         route: '/taskboard',
@@ -20,6 +21,7 @@ export const description: ModuleDescription = {
                     moduleId: PLATFORM.moduleName('./overview/overview'),
                     name: 'overview',
                     nav: true,
+                    icon: 'sd_storage',
                     title: 'Overview'
                 }
             ]

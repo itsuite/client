@@ -5,6 +5,7 @@ export const description: ModuleDescription = {
 
     title: 'Dashboard',
     perex: 'News from all apps',
+    thumbnail: 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Drive-icon.png',
 
     routeConfig: {
         route: '/dashboard',

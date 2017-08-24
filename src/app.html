@@ -20,23 +20,27 @@
     </header>
 
     <div id="content-wrapper">
-        <aside id="navigation" class="${navigationOpen ? 'open' : ''}">
-            <div class="app-switcher" mdc-menu="ref.bind: moduleSwitcherMenu; auto-close: true">
-                <img class="app-logo" src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Drive-icon.png">
+        <aside id="navigation" class="${navigationOpen ? 'open' : ''} ${appSwitcherOpen ? 'app-switcher-open' : ''}">
+            <div class="app-switcher" click.delegate="appSwitcherOpen = !appSwitcherOpen">
+                <img class="app-logo" src="${moduleDescription.thumbnail}">
                 <span class="app-name">${moduleDescription.title}</span>
             </div>
 
-            <mdc-menu-contents ref="moduleSwitcherMenu">
-                <ul class="mdc-list">
-                    <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="navigate(item.route)">
-                        ${item.name}
-                    </li>
-                </ul>
-            </mdc-menu-contents>
-            <ul>
+            <ul show.bind="appSwitcherOpen">
+                <li show.bind="item.routeConfig.name != moduleDescription.routeConfig.name"
+                    data-test="${item.routeConfig.name == moduleDescription.routeConfig.name}"
+                    repeat.for="item of moduleContainer.modules"
+                >
+                    <a suite-href.bind="item.routeConfig.name" click.delegate="appSwitcherOpen = false">
+                        <img class="navigation-item-icon" src="${item.thumbnail}">
+                        ${item.title}
+                    </a>
+                </li>
+            </ul>
+            <ul show.bind="!appSwitcherOpen">
                 <li class="${$index == 0 ? 'active' : ''}" repeat.for="item of navigation">
                     <a suite-href.bind="item.route.name">
-                        <i class="material-icons">${item.icon}</i>
+                        <i class="navigation-item-icon material-icons">${item.icon}</i>
                         ${item.title}
                     </a>
                 </li>
