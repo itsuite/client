@@ -17,14 +17,16 @@ export const description: ModuleDescription = {
                     name: 'introduction',
                     moduleId: PLATFORM.moduleName('./introduction/introduction'),
                     nav: true,
-                    title: 'Introduction'
+                    title: 'Introduction',
+                    icon: 'sd_storage'
                 },
                 {
                     route: '/buttons',
                     name: 'buttons',
                     moduleId: PLATFORM.moduleName('./buttons/buttons'),
                     nav: true,
-                    title: 'Buttons'
+                    title: 'Buttons',
+                    icon: 'signal_wifi_4_bar'
                 }
             ]
         }

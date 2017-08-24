@@ -22,6 +22,7 @@ export class SuiteBreadcrumbs {
     }
 
     public getNewInstructions(): NavigationInstruction[] {
+
         if (!this.router.currentInstruction) {
             return [];
         }

@@ -3,63 +3,53 @@
     <require from="styles/vendor.scss"></require>
     <require from="styles/app.scss"></require>
 
-
-    <header id="main-header" class="mdc-toolbar mdc-elevation--z4">
+    <header id="main-header" class="mdc-toolbar">
         <div class="mdc-toolbar__row">
             <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                 <i mdc-ripple
                    data-mdc-ripple-is-unbounded
-                   mdc-drawer-collapse="ref.bind: mainDrawer;"
-                   class="mdc-icon-toggle mdc-toolbar__icon material-icons mdc-theme--text-primary-on-primary"
+                   click.delegate="navigationOpen = !navigationOpen"
+                   class="mdc-toolbar__icon--menu material-icons mdc-theme--text-primary-on-primary"
                 >menu</i>
 
                 <a href="/" class="main-logo">
-                    <img src="https://ssl.gstatic.com/images/branding/lockups/2x/lockup_gplus_light_color_88x24dp.png">
+                    <bold>Rain</bold>flow
                 </a>
-
-                <span mdc-menu="ref.bind: moduleSwitcherMenu; auto-close: true"
-                      class="mdc-toolbar__title app-title"
-                >
-                    ${moduleDescription.title}
-                    <i class="module-switcher-icon material-icons">arrow_drop_down</i>
-                </span>
-
-                <mdc-menu-contents ref="moduleSwitcherMenu">
-                    <ul class="mdc-list">
-                        <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="navigate(item.route)">
-                            ${item.name}
-                        </li>
-                    </ul>
-                </mdc-menu-contents>
             </section>
         </div>
     </header>
 
-    <mdc-drawer id="main-drawer" type="temporary" view-model.ref="mainDrawer">
+    <div id="content-wrapper">
+        <aside id="navigation" class="${navigationOpen ? 'open' : ''}">
+            <div class="app-switcher" mdc-menu="ref.bind: moduleSwitcherMenu; auto-close: true">
+                <img class="app-logo" src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Drive-icon.png">
+                <span class="app-name">${moduleDescription.title}</span>
+            </div>
 
-        <div slot="header">
-            user@gmail.com
-        </div>
+            <mdc-menu-contents ref="moduleSwitcherMenu">
+                <ul class="mdc-list">
+                    <li class="mdc-list-item" repeat.for="item of moduleList" click.delegate="navigate(item.route)">
+                        ${item.name}
+                    </li>
+                </ul>
+            </mdc-menu-contents>
+            <ul>
+                <li class="${$index == 0 ? 'active' : ''}" repeat.for="item of navigation">
+                    <a suite-href.bind="item.route.name">
+                        <i class="material-icons">${item.icon}</i>
+                        ${item.title}
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-        <div>
-            <a repeat.for="item of navigation"
-               class="mdc-list-item"
-               mdc-ripple
-               mdc-drawer-selected
-               suite-href.bind="item.route.name"
-            >
-                <i if.bind="item.icon"
-                   class="material-icons mdc-list-item__start-detail"
-                >${item.icon}</i> ${item.title}
-            </a>
-        </div>
-    </mdc-drawer>
+        <main id="page-content">
+            <section id="breadcrumbs">
+                <suite-breadcrumbs></suite-breadcrumbs>
+            </section>
 
-    <section id="breadcrumbs">
-        <suite-breadcrumbs></suite-breadcrumbs>
-    </section>
+            <router-view></router-view>
+        </main>
+    </div>
 
-    <main id="page-content" class="mdc-layout-grid">
-        <router-view></router-view>
-    </main>
 </template>

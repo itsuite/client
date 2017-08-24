@@ -139,6 +139,7 @@ export class App {
      * @returns {DrawerLink[]}
      */
     public createNavFromModule(module: ModuleDescription): DrawerLink[] {
+
         return module.routeConfig.settings.childRoutes.reduce((items: DrawerLink[], route) => {
             if (route.title) {
                 items.push({
@@ -146,7 +147,7 @@ export class App {
                     icon: route.icon,
                     route: {
                         name: module.routeConfig.name + '/' + route.name
-                    }
+                    },
                 });
             }
 
