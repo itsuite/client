@@ -12,6 +12,7 @@ export function configure(aurelia: FrameworkConfiguration) {
         PLATFORM.moduleName('shared/ux/mdc-drawer/mdc-drawer-collapse'),
         PLATFORM.moduleName('shared/ux/mdc-ripple/mdc-ripple'),
         PLATFORM.moduleName('shared/ux/mdc-menu/mdc-menu'),
-        PLATFORM.moduleName('shared/ux/mdc-menu/mdc-menu-contents.html')
+        PLATFORM.moduleName('shared/ux/mdc-menu/mdc-menu-contents.html'),
+        PLATFORM.moduleName('shared/ux/suite-breadcrumbs/suite-breadcrumbs')
     ]);
 }
