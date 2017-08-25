@@ -161,12 +161,11 @@ body {
   display: flex;
   width: 100%;
   max-width: 720px;
-  margin-left: 16px;
 
   .search-bar-inner {
     height: 48px;
     border-radius: 4px;
-    background: darken($mdc-theme-primary, 5);
+    background: lighten($mdc-theme-primary, 4);
     display: flex;
     flex-grow: 1;
     align-items: center;
@@ -182,6 +181,10 @@ body {
 
       &:focus {
         outline: none;
+      }
+
+      &::placeholder {
+        color: $suite-search-placeholder-text;
       }
     }
 
