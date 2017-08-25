@@ -5,7 +5,7 @@
 
     <header id="main-header" class="mdc-toolbar">
         <div class="mdc-toolbar__row">
-            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start logo-section">
                 <i mdc-ripple
                    data-mdc-ripple-is-unbounded
                    click.delegate="navigationOpen = !navigationOpen"
@@ -13,8 +13,17 @@
                 >menu</i>
 
                 <a href="/" class="main-logo">
-                    <bold>Rain</bold>flow
+                    <strong>Rain</strong>flow
                 </a>
+            </section>
+
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <div class="search-bar">
+                    <div class="search-bar-inner">
+                        <i class="material-icons">search</i>
+                        <input type="text" placeholder="What are you looking for?">
+                    </div>
+                </div>
             </section>
         </div>
     </header>

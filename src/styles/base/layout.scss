@@ -155,3 +155,39 @@ body {
     }
   }
 }
+
+.search-bar {
+
+  display: flex;
+  width: 100%;
+  max-width: 720px;
+  margin-left: 16px;
+
+  .search-bar-inner {
+    height: 48px;
+    border-radius: 4px;
+    background: darken($mdc-theme-primary, 5);
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+
+    input {
+      flex: 1;
+      margin-left: 12px;
+      background: transparent;
+      border: none;
+      box-sizing: border-box;
+      height: 100%;
+      color: $suite-toolbar-secondary-text;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .material-icons {
+      margin-left: 12px;
+      color: $suite-toolbar-secondary-text;
+    }
+  }
+}
