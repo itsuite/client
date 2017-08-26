@@ -3,15 +3,10 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {RouteMapper} from 'aurelia-route-mapper';
 import {RouterConfiguration, Router, RouteConfig, NavigationInstruction} from "aurelia-router";
 
-import {ModuleContainer} from './module-manager/module-container';
-
-import {description as dashboard} from "src/modules/dashboard/description";
-import {description as components} from "src/modules/components/description";
-import {description as taskboard} from "src/modules/taskboard/description";
 import {DrawerItems} from "src/shared/core/nav-items/drawer-items";
 import {RouteLink} from "src/shared/core/route-link";
-import {ModuleDescription} from "./module-manager/module-description";
 import {DrawerLink} from "src/shared/core/nav-items/drawer-link";
+import {ModuleManager} from "src/module-manager/module-manager";
 
 
 @autoinject()
@@ -20,28 +15,22 @@ export class App {
     public router: Router;
 
     public constructor(
-        private moduleContainer: ModuleContainer,
+        private moduleManager: ModuleManager,
         private routeMapper: RouteMapper,
         private ea: EventAggregator,
         private drawerItems: DrawerItems
     ) {
 
-        this.moduleContainer = moduleContainer;
+        this.moduleManager = moduleManager;
         this.routeMapper = routeMapper;
 
         this.ea.subscribe('router:navigation:success', route => {
             this.instructionChanged(route.instruction);
         });
-
-        // enable modules here
-        this
-            .add(dashboard)
-            .add(components)
-            .add(taskboard);
     }
 
     get moduleDescription() {
-        return this.moduleContainer.current;
+        return this.moduleManager.current;
     }
 
     get navigation() {
@@ -54,17 +43,17 @@ export class App {
      *
      * @returns {Array<{name: string; route: RouteLink}>}
      */
-    @computedFrom('moduleContainer.modules')
+    @computedFrom('moduleManager.modules')
     get moduleList(): Array<{name: string, route: RouteLink}> {
 
         let list = [];
 
-        for (let module of this.moduleContainer.modules) {
+        for (let module of this.moduleManager.modules) {
 
-            let link: RouteLink = {name: module.routeConfig.name};
+            let link: RouteLink = {name: module.id};
 
             list.push({
-                name: module.title,
+                name: module.name,
                 route: link
             });
         }
@@ -82,24 +71,13 @@ export class App {
         this.router.navigateToRoute(route.name, route.params);
     }
 
-    /**
-     * Activate a module
-     *
-     * @param {ModuleDescription} moduleDescription
-     * @returns {this}
-     */
-    public add(moduleDescription: ModuleDescription): this {
-        this.moduleContainer.modules.push(moduleDescription);
-        return this;
-    }
-
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = 'IT Suite';
         config.options.pushState = true;
 
         let map: RouteConfig[] = [];
-        for (let module of this.moduleContainer.modules) {
-            map.push(module.routeConfig);
+        for (let module of this.moduleManager.modules) {
+            map.push(...module.routes);
         }
 
         config.map(map);
@@ -113,7 +91,7 @@ export class App {
      * @param {ModuleDescription} module
      */
     public switchModule(module: ModuleDescription) {
-        this.moduleContainer.current = module;
+        this.moduleManager.current = module;
 
         // Drawer contents need to be set before the event is dispatched so they can be overwritten by the app if required
         this.drawerItems.items = this.createNavFromModule(module);
@@ -125,11 +103,13 @@ export class App {
     private instructionChanged(instruction: NavigationInstruction) {
         let moduleId = instruction.config.moduleId;
 
-        for (let module of this.moduleContainer.modules) {
-            if (module.routeConfig.moduleId == moduleId && module != this.moduleContainer.current) {
+        for (let module of this.moduleManager.modules) {
+            if (module.routeConfig.moduleId == moduleId && module != this.moduleManager.current) {
                 this.switchModule(module);
             }
         }
+
+        this.findActiveNavigationFromInstruction(instruction);
     }
 
     /**
@@ -153,5 +133,9 @@ export class App {
 
             return items;
         }, []);
+    }
+
+    public findActiveNavigationFromInstruction(instruction: NavigationInstruction) {
+        console.log(instruction);
     }
 }
