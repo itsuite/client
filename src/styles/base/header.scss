@@ -1,4 +1,5 @@
 @import 'base/variables';
+@import '~@material/theme/mixins';
 
 #main-header {
 
@@ -28,5 +29,33 @@
     }
   }
 
+  .control-icons {
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+      vertical-align: middle;
+      @include mdc-theme-prop(color, text-primary-on-primary);
 
+      .material-icons {
+        font-size: 24px;
+        vertical-align: middle;
+      }
+
+      &.user-icon {
+        box-sizing: content-box;
+        padding: 0 12px;
+        > img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
