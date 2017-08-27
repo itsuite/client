@@ -1,0 +1,41 @@
+@import 'src/styles/base/variables';
+
+$suite-search-placeholder-text: #aeaeae;
+
+suite-search-bar {
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+
+  .search-bar-inner {
+    height: 48px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+
+    input {
+      flex: 1;
+      margin-left: 12px;
+      background: transparent;
+      border: none;
+      box-sizing: border-box;
+      height: 100%;
+      color: $suite-toolbar-secondary-text;
+
+      &:focus {
+        transition: all .15s linear;
+        outline: none;
+        box-shadow: 0 2px 0 0 $mdc-theme-accent;
+      }
+
+      &::placeholder {
+        color: $suite-search-placeholder-text;
+      }
+    }
+
+    .material-icons {
+      margin-left: 12px;
+      color: $suite-toolbar-secondary-text;
+    }
+  }
+}

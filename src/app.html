@@ -18,12 +18,7 @@
             </section>
 
             <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                <div class="search-bar">
-                    <div class="search-bar-inner">
-                        <i class="material-icons">search</i>
-                        <input type="text" placeholder="What are you looking for?">
-                    </div>
-                </div>
+                <suite-search-bar submit.delegate="searchSubmit($event)"></suite-search-bar>
             </section>
 
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end">

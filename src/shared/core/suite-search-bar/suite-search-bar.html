@@ -1,0 +1,7 @@
+<template>
+    <require from="./suite-search-bar.scss"></require>
+    <form submit.delegate="submit($event)" class="search-bar-inner">
+        <i class="material-icons">search</i>
+        <input type="text" value.bind="query" placeholder="What are you looking for?">
+    </form>
+</template>

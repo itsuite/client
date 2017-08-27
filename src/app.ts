@@ -40,6 +40,10 @@ export class App {
             .add(taskboard);
     }
 
+    public searchSubmit(event: CustomEvent): void {
+        alert(event.detail.query);
+    }
+
     get moduleDescription() {
         return this.moduleContainer.current;
     }
